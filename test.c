@@ -9,16 +9,6 @@ void main()
         {'4', '5', '6'}, 
         {'7', '8', ' '}
     };
-    char solved[3][3] = {
-        {'1', '2', '3'}, 
-        {'4', '5', '6'}, 
-        {'7', '8', ' '}
-    };
-    int s = 1000;
-    goto scramble;
-    int previous;
-    play: ;
-    system("cls");
     for (int i = 0; i < 3; i++)
     {
         printf("|");
@@ -29,7 +19,6 @@ void main()
         printf("\n");
     }
     int input = getch();
-    scramble: ;
     int index[2];
     for (int i = 0; i < 3; i++)
     {
@@ -50,16 +39,6 @@ void main()
     for (int row = 0; row < 3; row++)
     {
         moves[1][row] = board[row][index[1]];
-    }
-    if (s > 0) //scrambler
-    {
-        s--;
-        int input = ' ';
-        while ((input == ' ') && (input != previous))
-        {
-            input = moves[rand()%2][rand()%3];
-        }
-        previous = input;
     }
     int axis;
     int position;
@@ -121,12 +100,13 @@ void main()
             }
         }
     }
-    if (s > 0)
+    for (int i = 0; i < 3; i++)
     {
-        goto scramble;
-    }
-    else if (board != solved)
-    {
-        goto play;
+        printf("|");
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%c|", board[i][j]);
+        }
+        printf("\n");
     }
 }
