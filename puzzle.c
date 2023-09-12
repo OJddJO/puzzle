@@ -14,9 +14,9 @@ void main()
         {'4', '5', '6'}, 
         {'7', '8', ' '}
     };
-    int s = 1000;
+    int s = 50;
+    int previous[] = {' ', ' ', ' ', ' '};
     goto scramble;
-    int previous;
     play: ;
     system("cls");
     for (int i = 0; i < 3; i++)
@@ -55,11 +55,13 @@ void main()
     {
         s--;
         int input = ' ';
-        while ((input == ' ') && (input != previous))
+        while ((input == ' ') || (input == previous[0]) || (input == previous[1]) || (input == previous[2]))
         {
             input = moves[rand()%2][rand()%3];
         }
-        previous = input;
+        previous[2] = previous[1];
+        previous[1] = previous[0];
+        previous[0] = input;
     }
     int axis;
     int position;
