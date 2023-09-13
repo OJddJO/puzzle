@@ -15,7 +15,7 @@ void main()
         {'7', '8', ' '}
     };
     int s = 50;
-    int previous[] = {' ', ' ', ' ', ' '};
+    int previous[] = {' ', ' ', ' ', ' ', ' ', ' '};
     goto scramble;
     play: ;
     system("cls");
@@ -51,16 +51,31 @@ void main()
     {
         moves[1][row] = board[row][index[1]];
     }
-    if (s > 0) //scrambler
+    if (s > 0) //scrambler -------------------------------
     {
         s--;
         int input = ' ';
-        while ((input == ' ') || (input == previous[0]) || (input == previous[1]) || (input == previous[2]))
+        int end = 0;
+        sboucle: while (end != 0)
         {
-            input = moves[rand()%2][rand()%3];
+            for (int i = 0; i < 6; i++)
+            {
+                if (previous[i] != input)
+                {
+                    continue;
+                }
+                else
+                {
+                    input = moves[rand()%2][rand()%3];;
+                    goto sboucle;
+                }
+            }
+            end = 1;
         }
-        previous[2] = previous[1];
-        previous[1] = previous[0];
+        for (int i = 0; i  < 4; i++)
+        {
+            previous[i+1] = previous[i];
+        }
         previous[0] = input;
     }
     int axis;
