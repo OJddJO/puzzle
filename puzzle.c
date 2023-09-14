@@ -56,9 +56,9 @@ void main()
         s--;
         int input = ' ';
         int end = 0;
-        sboucle: while (end != 0)
+        while (end != 0)
         {
-            for (int i = 0; i < 6; i++)
+            sboucle: for (int i = 0; i < 6; i++)
             {
                 if (previous[i] != input)
                 {
@@ -66,7 +66,7 @@ void main()
                 }
                 else
                 {
-                    input = moves[rand()%2][rand()%3];;
+                    input = moves[rand()%2][rand()%3];
                     goto sboucle;
                 }
             }
