@@ -5,6 +5,7 @@
 
 int compareArray();
 int checkEnd();
+int elementInArray();
 void printBoard();
 
 void main()
@@ -20,6 +21,7 @@ void main()
         {'1', '2', '3'}
     };
     int s = 50;
+    int alreadyUsed[][2] = {{0, 0}};
     srand(time(NULL));
     scramble: while (s > 0)
     {
@@ -172,6 +174,18 @@ int checkEnd(char board[3][3])
         }
     }
     return test;
+}
+
+int elementInArray(int element, int *array[2], int arraySize)
+{
+    for (int i = 0; i < arraySize; i++)
+    {
+        if (element == array[i])
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void printBoard(char board[3][3])
