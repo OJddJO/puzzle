@@ -3,6 +3,8 @@
 #include <conio.h>
 
 int compareArray();
+int checkEnd();
+void printBoard();
 
 void main()
 {
@@ -11,26 +13,28 @@ void main()
         {'4', '5', '6'},
         {'7', '8', ' '}
     };
-    char solved[3][3] = {
-        {'1', '2', '3'},
+    char numpad[3][3] = {
+        {'7', '8', '9'},
         {'4', '5', '6'},
-        {'7', '8', ' '}
+        {'1', '2', '3'}
     };
     int s = 50;
-    goto scramble;
-    play:;
-    system("cls");
-    for (int i = 0; i < 3; i++)
+    scramble: while (s > 0) //scrambler -------------------------------
     {
-        printf("|");
-        for (int j = 0; j < 3; j++)
+        int i[] = { rand() % 3, rand() % 3 };
+        int j[] = { rand() % 3, rand() % 3 };
+        if (compareArray(i, j, 2))
         {
-            printf("%c|", board[i][j]);
+            goto scramble;
         }
-        printf("\n");
+        char tmp = board[i[0]][i[1]];
+        board[i[0]][i[1]] = board[j[0]][j[1]];
+        board[j[0]][j[1]] = tmp;
+        s--;
     }
+    play:;
+    printBoard(board);
     int input = _getch();
-    scramble:;
     int index[2];
     for (int i = 0; i < 3; i++)
     {
@@ -52,22 +56,7 @@ void main()
     {
         moves[1][row] = board[row][index[1]];
     }
-    if (s > 0) //scrambler -------------------------------
-    {
-        int i[] = { rand() % 3, rand() % 3 };
-        int j[] = { rand() % 3, rand() % 3 };
-        if (compareArray(i, j, 2))
-        {
-            goto scramble;
-        }
-        char tmp = board[i[0]][i[1]];
-        board[i[0]][i[1]] = board[j[0]][j[1]];
-        board[j[0]][j[1]] = tmp;
-        s--;
-    }
-    int axis;
-    int position;
-    int position2;
+    int axis, position, position2;
     for (int i = 0; i < 2; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -76,10 +65,12 @@ void main()
             {
                 axis = i;
                 position = j;
+                goto playableMove;
             }
         }
     }
-    for (int j = 0; j < 3; j++)
+    goto play;
+    playableMove: for (int j = 0; j < 3; j++)
     {
         if (' ' == moves[axis][j])
         {
@@ -125,14 +116,12 @@ void main()
             }
         }
     }
-    if (s > 0)
-    {
-        goto scramble;
-    }
-    else if (1)
+    // check end
+    if (!checkEnd(board))
     {
         goto play;
     }
+    printBoard(board);
 }
 
 int compareArray(int a[], int b[], int len)
@@ -146,4 +135,39 @@ int compareArray(int a[], int b[], int len)
         }
     }
     return test;
+}
+
+int checkEnd(char board[3][3])
+{
+    char solved[3][3] = {
+        {'1', '2', '3'},
+        {'4', '5', '6'},
+        {'7', '8', ' '}
+    };
+    int test = 1;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (board[i][j] != solved[i][j])
+            {
+                test = 0;
+            }
+        }
+    }
+    return test;
+}
+
+void printBoard(char board[3][3])
+{
+    system("cls");
+    for (int i = 0; i < 3; i++)
+    {
+        printf("|");
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%c|", board[i][j]);
+        }
+        printf("\n");
+    }
 }

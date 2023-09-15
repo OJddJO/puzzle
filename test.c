@@ -16,8 +16,8 @@ int compareArray(int a[], int b[], int len)
 
 void main()
 {
-    int i[] = {3, 3};
-    int j[] = {3, 3};
+    int i[] = { rand() % 3, rand() % 3 };
+    int j[] = { rand() % 3, rand() % 3 };
     printf("%d", i==j);
     if (i == j)
     {
@@ -31,5 +31,8 @@ void main()
             test = 0;
         }
     }
-    printf("%d", compareArray(i, j, 2));
+    if (compareArray(i, j, 2))
+    {
+        printf("ok");
+    }
 }
