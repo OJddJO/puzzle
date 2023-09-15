@@ -19,7 +19,7 @@ void main()
         {'4', '5', '6'},
         {'1', '2', '3'}
     };
-    int s = 15;
+    int s = 50;
     srand(time(NULL));
     scramble: while (s > 0)
     {
@@ -37,6 +37,19 @@ void main()
     play:;
     printBoard(board);
     int input = _getch();
+    for (int x = 0; x < 3; x++)
+    {
+        for (int y = 0; y < 3; y++)
+        {
+            if (input == numpad[x][y])
+            {
+                input = board[x][y];
+                goto postInput;
+            }
+        }
+    }
+    goto play;
+    postInput: ;
     int index[2];
     for (int i = 0; i < 3; i++)
     {
@@ -124,6 +137,7 @@ void main()
         goto play;
     }
     printBoard(board);
+    printf("\nGood Job !");
 }
 
 int compareArray(int a[], int b[], int len)
@@ -163,6 +177,7 @@ int checkEnd(char board[3][3])
 void printBoard(char board[3][3])
 {
     system("cls");
+    printf("Use the numpad to play\n\n");
     for (int i = 0; i < 3; i++)
     {
         printf("|");
