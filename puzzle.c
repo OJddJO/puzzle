@@ -7,18 +7,18 @@ int compareArray();
 void main()
 {
     char board[3][3] = {
-        {'1', '2', '3'}, 
-        {'4', '5', '6'}, 
+        {'1', '2', '3'},
+        {'4', '5', '6'},
         {'7', '8', ' '}
     };
     char solved[3][3] = {
-        {'1', '2', '3'}, 
-        {'4', '5', '6'}, 
+        {'1', '2', '3'},
+        {'4', '5', '6'},
         {'7', '8', ' '}
     };
     int s = 50;
     goto scramble;
-    play: ;
+    play:;
     system("cls");
     for (int i = 0; i < 3; i++)
     {
@@ -29,8 +29,8 @@ void main()
         }
         printf("\n");
     }
-    int input = getch();
-    scramble: ;
+    int input = _getch();
+    scramble:;
     int index[2];
     for (int i = 0; i < 3; i++)
     {
@@ -54,16 +54,16 @@ void main()
     }
     if (s > 0) //scrambler -------------------------------
     {
-        random: ;
-        int i[] = {rand()%3, rand()%3};
-        int j[] = {rand()%3, rand()%3};
+        int i[] = { rand() % 3, rand() % 3 };
+        int j[] = { rand() % 3, rand() % 3 };
         if (compareArray(i, j, 2))
         {
-            goto random;
+            goto scramble;
         }
         char tmp = board[i[0]][i[1]];
         board[i[0]][i[1]] = board[j[0]][j[1]];
         board[j[0]][j[1]] = tmp;
+        s--;
     }
     int axis;
     int position;
@@ -93,16 +93,16 @@ void main()
         {
             for (int i = 0; i < abs(diff); i++)
             {
-                board[index[0]][position2-i] = board[index[0]][position2-i-1];
-                board[index[0]][position2-i-1] = ' ';
+                board[index[0]][position2 - i] = board[index[0]][position2 - i - 1];
+                board[index[0]][position2 - i - 1] = ' ';
             }
         }
         else
         {
             for (int i = 0; i < abs(diff); i++)
             {
-                board[index[0]][position2+i] = board[index[0]][position2+i+1];
-                board[index[0]][position2+i+1] = ' ';
+                board[index[0]][position2 + i] = board[index[0]][position2 + i + 1];
+                board[index[0]][position2 + i + 1] = ' ';
             }
         }
     }
@@ -112,16 +112,16 @@ void main()
         {
             for (int i = 0; i < abs(diff); i++)
             {
-                board[position2-i][index[1]] = board[position2-i-1][index[1]];
-                board[position2-i-1][index[1]] = ' ';
+                board[position2 - i][index[1]] = board[position2 - i - 1][index[1]];
+                board[position2 - i - 1][index[1]] = ' ';
             }
         }
         else
         {
             for (int i = 0; i < abs(diff); i++)
             {
-                board[position2+i][index[1]] = board[position2+i+1][index[1]];
-                board[position2+i+1][index[1]] = ' ';
+                board[position2 + i][index[1]] = board[position2 + i + 1][index[1]];
+                board[position2 + i + 1][index[1]] = ' ';
             }
         }
     }
