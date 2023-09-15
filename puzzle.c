@@ -52,7 +52,7 @@ void main()
     {
         moves[1][row] = board[row][index[1]];
     }
-    if (s > 0) //scrambler
+    if (s > 0) //scrambler -------------------------------
     {
         random: ;
         int i[] = {rand()%3, rand()%3};
