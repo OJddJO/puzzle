@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <time.h>
 
 int compareArray();
 int checkEnd();
@@ -19,6 +20,7 @@ void main()
         {'1', '2', '3'}
     };
     int s = 50;
+    srand(time(NULL));
     scramble: while (s > 0) //scrambler -------------------------------
     {
         int i[] = { rand() % 3, rand() % 3 };
