@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <conio.h>
 
+int compareArray();
+
 void main()
 {
     char board[3][3] = {
@@ -15,7 +17,6 @@ void main()
         {'7', '8', ' '}
     };
     int s = 50;
-    int previous[] = {' ', ' ', ' ', ' '};
     goto scramble;
     play: ;
     system("cls");
@@ -53,15 +54,16 @@ void main()
     }
     if (s > 0) //scrambler
     {
-        s--;
-        int input = ' ';
-        while ((input == ' ') || (input == previous[0]) || (input == previous[1]) || (input == previous[2]))
+        random: ;
+        int i[] = {rand()%3, rand()%3};
+        int j[] = {rand()%3, rand()%3};
+        if (compareArray(i, j, 2))
         {
-            input = moves[rand()%2][rand()%3];
+            goto random;
         }
-        previous[2] = previous[1];
-        previous[1] = previous[0];
-        previous[0] = input;
+        char tmp = board[i[0]][i[1]];
+        board[i[0]][i[1]] = board[j[0]][j[1]];
+        board[j[0]][j[1]] = tmp;
     }
     int axis;
     int position;
@@ -127,8 +129,21 @@ void main()
     {
         goto scramble;
     }
-    else if (board != solved)
+    else if (1)
     {
         goto play;
     }
+}
+
+int compareArray(int a[], int b[], int len)
+{
+    int test = 1;
+    for (int n = 0; n < len; n++)
+    {
+        if (a[n] != b[n])
+        {
+            test = 0;
+        }
+    }
+    return test;
 }
