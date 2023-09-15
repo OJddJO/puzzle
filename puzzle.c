@@ -19,9 +19,9 @@ void main()
         {'4', '5', '6'},
         {'1', '2', '3'}
     };
-    int s = 50;
+    int s = 15;
     srand(time(NULL));
-    scramble: while (s > 0) //scrambler -------------------------------
+    scramble: while (s > 0)
     {
         int i[] = { rand() % 3, rand() % 3 };
         int j[] = { rand() % 3, rand() % 3 };
