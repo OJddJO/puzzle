@@ -5,7 +5,6 @@
 
 int compareArray();
 int checkEnd();
-int elementInArray();
 void printBoard();
 
 void main()
@@ -21,7 +20,6 @@ void main()
         {'1', '2', '3'}
     };
     int s = 50;
-    int alreadyUsed[][2] = {{0, 0}};
     srand(time(NULL));
     scramble: while (s > 0)
     {
@@ -162,6 +160,11 @@ int checkEnd(char board[3][3])
         {'4', '5', '6'},
         {'7', '8', ' '}
     };
+    char error[3][3] = {
+        {'1', '2', '3'},
+        {'4', '5', '6'},
+        {'8', '7', ' '}
+    };
     int test = 1;
     for (int i = 0; i < 3; i++)
     {
@@ -173,19 +176,21 @@ int checkEnd(char board[3][3])
             }
         }
     }
-    return test;
-}
-
-int elementInArray(int element, int *array[2], int arraySize)
-{
-    for (int i = 0; i < arraySize; i++)
+    if (test == 0)
     {
-        if (element == array[i])
+        test = 1;
+        for (int i = 0; i < 3; i++)
         {
-            return 1;
+            for (int j = 0; j < 3; j++)
+            {
+                if (board[i][j] != error[i][j])
+                {
+                    test = 0;
+                }
+            }
         }
     }
-    return 0;
+    return test;
 }
 
 void printBoard(char board[3][3])
